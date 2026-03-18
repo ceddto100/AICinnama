@@ -34,7 +34,7 @@ export async function runFullPipeline(input: RunFullPipelineInput) {
   try {
     // ── Step 1: Generate voiceover ─────────────────────────────────────────
     console.error(`[pipeline:${pipelineId}] Generating voiceover...`);
-    const voiceoverResult = await generateVoiceover({ script, voice_id });
+    const voiceoverResult = await generateVoiceover({ script, voice_id, model_id: 'eleven_multilingual_v2' });
     pipelineState.updatePipeline(pipelineId, { audio_url: voiceoverResult.audio_url });
 
     // ── Step 2: Decompose script into segments ─────────────────────────────

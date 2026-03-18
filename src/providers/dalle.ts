@@ -23,7 +23,7 @@ export async function generateImage(prompt: string): Promise<string> {
     response_format: 'url',
   });
 
-  const url = response.data[0]?.url;
+  const url = response.data?.[0]?.url;
   if (!url) throw new Error('DALL-E 3 returned no image URL');
   return url;
 }
