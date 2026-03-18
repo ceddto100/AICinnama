@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { ApiProvider, AssetType, KenBurnsConfig } from '../utils/types.js';
 import { generateWithFallback } from '../services/fallback-router.js';
 import { adaptPrompt } from '../services/prompt-adapter.js';

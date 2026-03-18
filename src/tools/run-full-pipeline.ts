@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { generateVoiceover } from './generate-voiceover.js';
 import { decomposeScript } from './decompose-script.js';
 import { generateAsset } from './generate-asset.js';

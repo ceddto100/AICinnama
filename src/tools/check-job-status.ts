@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import * as kling from '../providers/kling.js';
 import * as veo3 from '../providers/veo3.js';
 import * as replicate from '../providers/replicate.js';

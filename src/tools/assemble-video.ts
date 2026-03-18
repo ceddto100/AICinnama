@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as cloudinaryProvider from '../providers/cloudinary.js';

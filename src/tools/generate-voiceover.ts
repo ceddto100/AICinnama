@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import * as elevenlabs from '../providers/elevenlabs.js';
 import * as cloudinary from '../providers/cloudinary.js';
 import * as fs from 'fs';

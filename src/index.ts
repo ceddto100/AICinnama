@@ -1,6 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { validateConfig } from './utils/config.js';
 
 // Tool implementations
@@ -20,12 +20,10 @@ const server = new McpServer({
 });
 
 // ── Tool 1: generate_voiceover ─────────────────────────────────────────────
-// Note: schema shapes are cast to `any` to handle Zod instance mismatch between
-// the app's zod and the MCP SDK's bundled zod. Runtime behavior is unaffected.
 server.tool(
   'generate_voiceover',
   'Generate a voiceover from a narration script using ElevenLabs. Returns audio URL and word-level timestamps.',
-  GenerateVoiceoverInputSchema.shape as any,
+  GenerateVoiceoverInputSchema.shape,
   async (input) => {
     const result = await generateVoiceover(input as z.infer<typeof GenerateVoiceoverInputSchema>);
     return {
@@ -38,7 +36,7 @@ server.tool(
 server.tool(
   'decompose_script',
   'Decompose a narration script into visual segments using Claude. Returns scene descriptions, visual prompts, timing, and recommended generation APIs.',
-  DecomposeScriptInputSchema.shape as any,
+  DecomposeScriptInputSchema.shape,
   async (input) => {
     const result = await decomposeScript(input as z.infer<typeof DecomposeScriptInputSchema>);
     return {
@@ -51,7 +49,7 @@ server.tool(
 server.tool(
   'generate_asset',
   'Generate a single video clip or image for a segment with automatic fallback routing across providers.',
-  GenerateAssetInputSchema.shape as any,
+  GenerateAssetInputSchema.shape,
   async (input) => {
     const result = await generateAsset(input as z.infer<typeof GenerateAssetInputSchema>);
     return {
@@ -64,7 +62,7 @@ server.tool(
 server.tool(
   'check_job_status',
   'Poll an async video generation job (Kling, Veo3, Replicate SVD) for completion status.',
-  CheckJobStatusInputSchema.shape as any,
+  CheckJobStatusInputSchema.shape,
   async (input) => {
     const result = await checkJobStatus(input as z.infer<typeof CheckJobStatusInputSchema>);
     return {
@@ -77,7 +75,7 @@ server.tool(
 server.tool(
   'assemble_video',
   'Assemble all generated segment assets and voiceover into a final MP4 using FFmpeg.',
-  AssembleVideoInputSchema.shape as any,
+  AssembleVideoInputSchema.shape,
   async (input) => {
     const result = await assembleVideo(input as z.infer<typeof AssembleVideoInputSchema>);
     return {
@@ -90,7 +88,7 @@ server.tool(
 server.tool(
   'get_pipeline_status',
   'Get the current state of a pipeline run — segments done, pending, errors.',
-  GetPipelineStatusInputSchema.shape as any,
+  GetPipelineStatusInputSchema.shape,
   async (input) => {
     const result = getPipelineStatus(input as z.infer<typeof GetPipelineStatusInputSchema>);
     return {
@@ -103,7 +101,7 @@ server.tool(
 server.tool(
   'run_full_pipeline',
   'Run the entire AI video generation pipeline end-to-end: voiceover → scene decomposition → asset generation → assembly. Single call in, final MP4 URL out.',
-  RunFullPipelineInputSchema.shape as any,
+  RunFullPipelineInputSchema.shape,
   async (input) => {
     const result = await runFullPipeline(input as z.infer<typeof RunFullPipelineInputSchema>);
     return {

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import Anthropic from '@anthropic-ai/sdk';
 import { config } from '../utils/config.js';
 import { ScriptSegment, WordTimestamp } from '../utils/types.js';

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import * as pipelineState from '../services/pipeline-state.js';
 
 export const GetPipelineStatusInputSchema = z.object({
